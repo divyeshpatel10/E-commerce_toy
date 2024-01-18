@@ -53,38 +53,6 @@ window.addEventListener("resize", () => {
   }
 });
 
-// Dark and Light Mode with localStorage
-(function () {
-  let darkMode = localStorage.getItem("darkMode");
-  const darkSwitch = document.getElementById("switch");
-
-  // Enable and Disable Darkmode
-  const enableDarkMode = () => {
-    document.body.classList.add("darkmode");
-    localStorage.setItem("darkMode", "enabled");
-  };
-
-  const disableDarkMode = () => {
-    document.body.classList.remove("darkmode");
-    localStorage.setItem("darkMode", null);
-  };
-
-  // User Already Enable Darkmode
-  if (darkMode === "enabled") {
-    enableDarkMode();
-  }
-
-  // User Clicks the Darkmode Toggle
-  darkSwitch.addEventListener("click", () => {
-    darkMode = localStorage.getItem("darkMode");
-    if (darkMode !== "enabled") {
-      enableDarkMode();
-    } else {
-      disableDarkMode();
-    }
-  });
-})();
-
 // Initialize All Event Listeners
 burger.addEventListener("click", toggleMenu);
 overlay.addEventListener("click", toggleMenu);
@@ -93,11 +61,11 @@ menuTitle.addEventListener("click", hideSubMenu);
 menuInner.addEventListener("click", toggleSubMenu);
 
 // Shop by brand Slider
-const el = document.querySelector('.blaze-slider')
+const el = document.querySelector('.shop_brand_slider .blaze-slider')
 new BlazeSlider(el)
 new BlazeSlider(el, {
   all: {
-    enableAutoplay: true,
+    enableAutoplay: false,
     autoplayInterval: 2000,
     transitionDuration: 300,
     slidesToShow: 2,
@@ -109,3 +77,21 @@ new BlazeSlider(el, {
     slidesToShow: 1,
   },
 })
+
+// bundle and save Slider
+const dp = document.querySelector('.bundle_slider .blaze-slider')
+  new BlazeSlider(dp)
+  new BlazeSlider(dp, {
+    all: {
+      enableAutoplay: false,
+      autoplayInterval: 2000,
+      transitionDuration: 300,
+      slidesToShow: 3,
+    },
+    '(max-width: 900px)': {
+      slidesToShow: 1,
+    },
+    '(max-width: 500px)': {
+      slidesToShow: 1,
+    },
+  })
